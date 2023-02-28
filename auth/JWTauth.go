@@ -21,7 +21,7 @@ func GenerateJWT() (string, error) {
 	tokenString, err := token.SignedString(KEY)
 
 	if err != nil {
-		fmt.Errorf("Something went wrong: %s", err.Error())
+		fmt.Errorf("something went wrong: %s", err.Error())
 		return "", err
 	}
 
@@ -31,9 +31,10 @@ func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		if r.Header["Token"] != nil {
+
 			token, err := jwt.Parse(r.Header["Token"][0], func(token *jwt.Token) (interface{}, error) {
 				if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-					return nil, fmt.Errorf("There was an error")
+					return nil, fmt.Errorf("there was an error")
 				}
 				return KEY, nil
 			})
@@ -46,7 +47,7 @@ func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 				endpoint(w, r)
 			}
 		} else {
-			fmt.Fprintf(w, "Not Authorized")
+			fmt.Fprintf(w, "No Token")
 		}
 	})
 }

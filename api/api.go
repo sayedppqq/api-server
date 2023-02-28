@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func welcome(w http.ResponseWriter, r *http.Request) {
@@ -110,13 +111,15 @@ func routerCalling() {
 	router.HandleFunc("/api/players/delete/{id}", JWTauth.IsAuthorized(deletePlayer)).Methods("DELETE")
 
 }
-func StartServer() {
-	log.Printf("-------------server started at port %d -------\n", 8080)
+func StartServer(Port int) {
+
+	log.Printf("-------------starting sever at %d -------\n", Port)
+
 	routerCalling()
 
 	//Server
 	server := http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + strconv.Itoa(Port),
 		Handler: router,
 	}
 

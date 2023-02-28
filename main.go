@@ -1,9 +1,10 @@
+/*
+Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+*/
 package main
 
-import (
-	"api-server/api"
-)
+import "api-server/cmd"
 
 func main() {
-	api.StartServer()
+	cmd.Execute()
 }
