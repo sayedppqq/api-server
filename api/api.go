@@ -17,7 +17,7 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "Error Generating token", err.Error())
 	}
 
-	fmt.Fprint(w, "This is default welcome page\nToken\n", validToken)
+	fmt.Fprint(w, "This is default welcome page\n\n\nToken\n", validToken)
 
 }
 func testPage(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +53,7 @@ func addPlayer(w http.ResponseWriter, r *http.Request) {
 
 	database.Data = append(database.Data, newPlayer)
 
-	fmt.Println("New player added\n", newPlayer)
+	fmt.Fprint(w, "New player added\n", newPlayer)
 	w.WriteHeader(http.StatusCreated)
 }
 func updatePlayer(w http.ResponseWriter, r *http.Request) {
@@ -69,7 +69,7 @@ func updatePlayer(w http.ResponseWriter, r *http.Request) {
 			database.Data[i] = updatedUser
 
 			w.WriteHeader(http.StatusAccepted)
-			fmt.Println("Updated\n", updatedUser)
+			fmt.Fprint(w, "Updated\n", database.Data[i])
 
 			return
 		}
@@ -86,9 +86,8 @@ func deletePlayer(w http.ResponseWriter, r *http.Request) {
 
 			database.Data = append(database.Data[:i], database.Data[i+1:]...)
 
-			fmt.Println("Deleted\n", player)
+			fmt.Fprint(w, "Deleted\n", player)
 
-			json.NewEncoder(w).Encode(player)
 			w.WriteHeader(http.StatusOK)
 			return
 		}
@@ -113,7 +112,9 @@ func routerCalling() {
 }
 func StartServer(Port int) {
 
-	log.Printf("-------------starting sever at %d -------\n", Port)
+	log.Println("-------------------starting sever at port :", Port)
+	log.Println("Home Page: ", "http://localhost:"+strconv.Itoa(Port))
+	log.Println("You will get a new token at home page")
 
 	routerCalling()
 
