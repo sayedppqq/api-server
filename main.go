@@ -7,4 +7,5 @@ import "api-server/cmd"
 
 func main() {
 	cmd.Execute()
+	//api.StartServer(7000)
 }
