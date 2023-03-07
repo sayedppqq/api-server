@@ -5,8 +5,16 @@ Simple api server for CRUD operation <br>
 - JWT Authentication
 - Cobra CLI
 ## Running the server ##
-```go run . start```<br>
-```go run . start -p port-number```
+### Running the server from direct source code ##
+```git clone https://github.com/sayedppqq/api-server.git``` <br>
+
+Go to the api-server directory and run <br>
+```go mod tidy``` <br>
+```go mod vendor``` <br>
+```go run . start``` or ```go run . start -p port-number```
+### Running the server from docker image ###
+```docker pull sayedppqq/api-server```<br>
+```docker run -dp <choosen port>:8080 sayedppqq/api-server```
 ## Data model ##
 <pre><code>
 // For string a cricket players basic information
