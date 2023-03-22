@@ -11,7 +11,7 @@ Simple api server for CRUD operation <br>
 Go to the api-server directory and run <br>
 ```go mod tidy``` <br>
 ```go mod vendor``` <br>
-```go run . start``` or ```go run . start -p port-number```
+```go run . start``` or ```go run . start -p <choosen port>```
 ### Running the server from docker image ###
 ```docker pull sayedppqq/api-server```<br>
 ```docker run -dp <choosen port>:8080 sayedppqq/api-server```
